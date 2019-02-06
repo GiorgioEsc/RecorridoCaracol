@@ -1,17 +1,34 @@
 def reconocerMatriz (prueba):
     return [y.split() for y in open (prueba, 'r')]
 
-print (reconocerMatriz ('prueba.txt'))
+def moverDerecha(matriz,x,y,centinela,longitud):
+        if(centinela<longitud):
+            print(matriz[x][y])
+            moverDerecha(matriz,x,y+1,centinela+1,longitud)
+        if(centinela==longitud):
+            moverAbajo(matriz,x+1,y-1,0,longitud-1)
 
-def recorrerDerecha (): 
-    for i in range(len(reconocerMatriz ('prueba.txt'))):
-        print(reconocerMatriz('prueba.txt')[0][i], end=" ")
-        
-    return  
+def moverAbajo(matriz,x,y,centinela,longitud):
+        if(centinela<longitud):
+            print(matriz[x][y])
+            moverAbajo(matriz,x+1,y,centinela+1,longitud)
+        if(centinela==longitud):
+            moverIzquierda(matriz,x-1,y-1,0,longitud)
+
+def moverIzquierda(matriz,x,y,centinela,longitud):
+        if(centinela<longitud):
+            print(matriz[x][y])
+            moverIzquierda(matriz,x,y-1,centinela+1,longitud)
+        if(centinela==longitud):
+            moverArriba(matriz,x-1,y+1,0,longitud-1)
+
+def moverArriba(matriz,x,y,centinela,longitud):
+        if(centinela<longitud):
+            print(matriz[x][y])
+            moverArriba(matriz,x-1,y,centinela+1,longitud)
+        if(centinela==longitud):
+            moverDerecha(matriz,x+1,y+1,0,longitud)
 
 
-#print (reconocerMatriz ('prueba.txt')[0][0])
-
-recorrerDerecha()
-#print (recorrerMatriz())
+moverDerecha(reconocerMatriz("matriz5.txt"),0,0,0,len(reconocerMatriz("matriz5.txt")))
 
